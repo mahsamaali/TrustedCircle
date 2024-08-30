@@ -1,0 +1,281 @@
+<div class="container main-secction">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section row ligne_infos">
+            <!-- <span id="cote_TC" class="cote">{{cote}}</span> -->
+            <!-- <img src="../../../assets/images/cover tc.jpg"> -->
+
+            <div class="col-md-12 col-sm-12 col-xs-12 row ligne_infos ligne_cote_banniere">
+
+                <!-- <span class="text-white">Note</span> -->
+
+                <span id="cote_TC" class="cote">{{cote}}</span>
+                <span>
+                    <div class="circle-container">
+                        <div class="form-row">
+                            <!-- <input type="number" min="1" max="5" step="0.1" id="numInput"
+                            class="form-control col-md-6" placeholder="Entrer un avis entre 1 et 5"> -->
+
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <div class="first-half half-review"></div>
+                                    <div class="second-half half-review"></div>
+                                </li>
+
+                                <li>
+                                    <div class="first-half half-review"></div>
+                                    <div class="second-half half-review"></div>
+                                </li>
+
+                                <li>
+                                    <div class="first-half half-review"></div>
+                                    <div class="second-half half-review"></div>
+                                </li>
+
+                                <li>
+                                    <div class="first-half half-review"></div>
+                                    <div class="second-half half-review"></div>
+                                </li>
+
+                                <li>
+                                    <div class="first-half half-review"></div>
+                                    <div class="second-half half-review"></div>
+                                </li>
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+
+                </span>
+                <!-- <span><img id="tc_reviews" src="../../../assets/images/TC logo 5.png"></span> -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4  partie_gauche">
+            <div class="row ">
+
+
+                <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image">
+                    <!-- <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle"> -->
+                    <!-- <img src="../../../assets/images/288738-P6NYM9-788.jpg" class="photo_profil" id="photo_utilisateur"> -->
+                    <!-- <img src="../../../assets/uploads/{{tabUserbProProfile.photo_utilisateur}}" -->
+                    <img src='{{urlDeImage}}'
+                        class="photo_profil" id="photo_utilisateur">
+                    <h3>{{ nomComplet }}</h3>
+                    <!-- <span class="">Nom_Fichier_Photo avec async : {{urlDeImage | async}}</span><br> -->
+                    <!-- <span class="">Nom_Fichier_Photo sans async: {{urlDeImage}}</span> -->
+                    <h5>{{ categorieGlobal }}</h5>
+                    <a href="{{site_web_url}}" target="_blank" id="site_web_url" class="btn btn-success btn-block">Voir
+                        le site Web</a>
+
+                    <!-- *****// Google map component *****************///////// -->
+                    <span id="adresse_haut"> {{ adresseComplet }} </span>
+
+                    <div id="map_google">
+                        <google-map height="300px" width="100%" [center]="center" [zoom]="zoom" *ngIf="afficherMap">
+                            <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
+                                [position]="markerPosition" [options]="markerOptions"
+                                (mapClick)="openInfoWindow(marker)">
+                            </map-marker>
+                            <map-info-window>Information sur ladresse</map-info-window>
+                        </google-map>
+                    </div>
+
+                    <!-- *****// Google map component *****************///////// -->
+
+
+
+                    <!-- Social section -->
+                    <!-- isFacebook: Boolean = false;
+                    isLinkedin: Boolean = false; -->
+                    <div id="social_section" class="card">
+
+                        <a  href="{{url_Facebook}}"><img *ngIf="isFacebook" id="facebook_icon" src="../../../assets/images/TC facebook logo.png" style="width:100px; height:90px"></a>
+                        <a  href="{{url_Linkedin}}"><img *ngIf="isLinkedin" id="linkedin_icon" src="../../../assets/images/TC linkedin logo.png" style="width:100px; height:90px"> </a> 
+                        <a href="mailto:{{courriel}}"><img id="mail_icon" src="../../../assets/images/TC mail logo.png" style="width:100px; height:90px"></a>  
+                    </div>
+
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Profession </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="titre_profession"> {{titre_profession}}</span>
+                        </div>
+                    </div>
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> N<sup>o</sup> de certificat </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="no_certificat">{{ no_de_certificat }} </span>
+                        </div>
+                    </div>
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> N<sup>o</sup> BDNI </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="no_BDNI">{{no_BDNI}} </span>
+                        </div>
+                    </div>
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> N<sup>o</sup> AMF </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="numero_AMF"> {{numero_AMF}}</span>
+                        </div>
+                    </div>
+                    <!-- <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Status </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="status"> {{status}} </span>
+                        </div>
+                    </div> -->
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Droits de pratique </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="droit_pratiques"> {{droit_pratiques}}</span>
+                        </div>
+                    </div>
+                    <!-- <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Entreprises affiliées </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="nom_entreprise"> </span>
+                        </div>
+                    </div> -->
+
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Honoraires </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="honoraires">{{ honoraires }} </span>
+                        </div>
+                    </div>
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Biographie </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="biographie_description"> {{biographie_description}}</span>
+                        </div>
+                    </div>
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Régions d'exercice </label>
+                        </div>
+                        <div class="col-md-8">
+
+                            <span class="infos_profil" id="nom_region"> {{region}}<br></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row ligne_infos">
+                        <div class="col-md-4">
+                            <label> Téléphone </label>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="infos_profil" id="telephone">{{telephone}} </span>
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-8  partie_droite">
+
+            <div class="row">
+
+
+                <div class="col-md-12 col-md-12-sm-12 col-xs-12" id="profile">
+
+
+                    <div class="row ligne_infos">
+
+                        <!-- <span id="container_review" > -->
+
+                        <!-- </span> -->
+
+
+                    </div>
+                    <!-- Section review ****************------------------ -->
+
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+
+                            <div class="bloc_avis">
+
+                                <!-- <h4 class="">Écris un avis</h4> -->
+
+                                <app-review-sys></app-review-sys>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- Section review ****************------------------ -->
+
+                    <!-- no_de_certificat: String;
+                     no_BDNI: String;
+                     numero_AMF: String;
+                     status: String;
+                     honoraires: String;
+                     biographie_description: String;
+                     site_web_url: String; -->
+
+
+
+
+
+
+                    <!-- Avis du pro -->
+                    <br><br><br>
+
+                    <div *ngFor="let avis of tabUserAvis" class="card card_avis">
+                        <div class="card-header">
+                            <p id="note_card">{{avis.cote_evaluation}} <img
+                                    src="../../../assets/images/avis/{{avis.imageAvis}}" id="imageAvis"></p>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- <div class="second-half half-review"> {{avis.cote_evaluation}} </div> -->
+
+
+
+                            <h5 class="card-title"> {{avis.titre}} </h5>
+                            <p class="card-text"> {{avis.texte}} </p>
+                            <!-- <p class="card-text"> {{avis.date_hre_creation}} </p> -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

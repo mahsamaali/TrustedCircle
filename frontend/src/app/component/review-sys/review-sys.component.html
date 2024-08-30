@@ -1,0 +1,90 @@
+<h4 class="messageErr" *ngIf="!isConnecter">Veuillez vous connecter pour donner un avis</h4>
+
+<div *ngIf="!isMemeUtilisateur && isConnecter" class="container-fluid reviews-container">
+
+  <div class="circle-container">
+
+
+  </div>
+ 
+
+
+  <!-- form card avis -->
+  <div class="card-body">
+    <form [formGroup]="avisForm" (ngSubmit)="onSubmit()">
+
+
+
+      <div class="form-group">
+
+        <div class="circle-container">
+          <h4>Veuillez donner votre avis </h4>
+          <ul>
+            <li>
+              <div (mouseenter)="chgColor(0,false,'#F92525')" (mouseleave)="rmvColor()"
+                (click)="chgColor(0,true,'#F92525')" class="circle-review" ></div>
+            </li>
+            <li>
+              <div (mouseenter)="chgColor(1,false,'#F37F2F')" (mouseleave)="rmvColor()"
+                (click)="chgColor(1,true,'#F37F2F')" class="circle-review" ></div>
+            </li>
+            <li>
+              <div (mouseenter)="chgColor(2,false,'#ffff00')" (mouseleave)="rmvColor()"
+                (click)="chgColor(2,true,'#ffff00')" class="circle-review" ></div>
+            </li>
+            <li>
+              <div (mouseenter)="chgColor(3,false,'#98FF6B')" (mouseleave)="rmvColor()"
+                (click)="chgColor(3,true,'#98FF6B')" class="circle-review" ></div>
+            </li>
+            <li>
+              <div (mouseenter)="chgColor(4,false,'#25CCF9')" (mouseleave)="rmvColor()"
+                (click)="chgColor(4,true,'#25CCF9')" class="circle-review" ></div>
+            </li>
+          </ul>
+          <span class="text-danger" *ngIf="!changeColor && (avisForm.controls.titre.dirty || avisForm.controls.texte.dirty)"> Sélectionner une côte</span> <br>
+        </div>
+
+
+                  <div class="form-group texte">
+                    <label for="texte">Titre</label>
+                    <input type="text" name="titre" id="titre" cols="30" rows="2" formControlName="titre"
+                    [ngClass]="{'is-invalid' : avisForm.controls.titre.invalid && avisForm.controls.titre.dirty}"
+                     class="form-control">
+                      <span *ngIf="avisForm.controls.titre.invalid && avisForm.controls.titre.dirty" 
+                      class="text-danger">Titre invalide</span>
+                  </div>
+
+
+
+
+        <div class="form-group texte">
+          <label for="texte">Commentaire</label>
+          <textarea name="texte" id="texte" cols="30" rows="10" formControlName="texte"
+          [ngClass]="{'is-invalid' : avisForm.controls.texte.invalid && avisForm.controls.texte.dirty}"
+           titre class="form-control"></textarea>
+            <span *ngIf="avisForm.controls.texte.invalid && avisForm.controls.texte.dirty" 
+            class="text-danger">Commentaire invalide</span>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col text-center">
+            <button class="btn btn-lg btn-primary" [disabled]="avisForm.invalid || !changeColor" (click)="rating()">ENVOYER MON AVIS</button>
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+  <!-- form card avis -->
+
+
+
+
+
+
+
+</div>

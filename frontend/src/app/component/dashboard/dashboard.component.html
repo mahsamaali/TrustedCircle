@@ -1,0 +1,489 @@
+<p *ngIf="tabUserbProProfile.length <= 0" class="no-data text-center"></p>
+<div class="container main-secction">
+    <div class="alert alert-danger" role="alert">
+        <h3>Enregistrements effectués</h3>      
+    </div>
+
+    <!-- <p>
+        <ngb-alert>
+          This alert's type is success and it's not dismissible because the config has been customized
+        </ngb-alert>
+      </p> -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+
+
+            <!-- <img src="../../../assets/images/cover tc.jpg" class="cover" id="cover"> -->
+        </div>
+    </div>
+
+    <div class="row">
+        <h2 *ngIf="message">Bien enregistre</h2>
+        <div  class="col-md-3  partie_gauche">
+            <div class="row ">
+
+                <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                 
+                    <img src="../../../assets/uploads/{{this.tabUserbProProfile.photo_utilisateur}}" height="200" *ngIf="this.tabUserbProProfile.photo_utilisateur && !imgURL"  class="photo_profil" id="photo_utilisateur">
+
+                    <!-- <img src="../../../assets/uploads/{{urlDeImage}}" height="200" *ngIf="urlDeImage && !imgURL"  class="photo_profil" id="photo_utilisateur"> -->
+
+                    <img [src]="imgURL" height="200" *ngIf="imgURL" class="photo_profil" id="photo_utilisateur">
+                    <br>
+                    <input  type="file" (change)="onFileSelected($event);" (change)="onUpload()" name="file" id="file" class="inputfile">
+                    <label for="file">Choisir une image</label>
+
+
+                    <span style="color:red;" *ngIf="message_Photo">{{message_Photo}}</span>
+                    <!-- <button type="button" (click)="onUpload()">Upload</button> -->
+
+                    <div  *ngIf="isUser" class="card" id="TC_card_rating">
+                        <div class="card-title">Note globale</div>
+                        <span id="cote_Google" class="cote">
+                           <h3> {{cote}}</h3>
+                        </span>
+                    </div>
+
+                    <div *ngIf="isUser" class="titre_stats">
+                        <div class="nbre_stats d-inline"> {{ nbre_total_cote }} </div> 
+                        <div class="texte_stats d-inline">avis reçus</div> 
+                    </div>
+
+                    <div class="bloc_AMF_ask">
+                        <input *ngIf="isUser" type="submit" class="" id="AMF_ask" value='Vérification AMF'
+                                    (click)="AMF_ask()">
+                    </div>
+                    
+                    
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-9  partie_droite">
+
+            <div class="row">
+
+
+                <div class="col-md-12 col-md-12-sm-12 col-xs-12" id="profile">
+
+
+                    <div class="form-group row ligne_infos">
+
+
+                    </div>
+
+
+                    <!-- <div class="row justify-content-center">
+                        <div class="col-12">
+
+
+
+                        </div>
+
+                    </div> -->
+                    <!-- <div class="form-group row ligne_infos"> -->
+                    <!-- <div class="col-md-4">
+                            <label>Note</label>
+
+
+
+                        </div> -->
+                    <div class="col-md-8">
+                        <span class="infos_profil note" id="nom">
+                            <!-- <h2 {{mess}}></h2> -->
+                        </span>
+                    </div>
+
+                    <!-- </div> -->
+
+
+
+
+
+                    <form [formGroup]="updateForm">
+                        <div id="first_section">
+
+
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label>Nom</label>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <span class="infos_profil" id="prenom"> <input type="text" class="form-control"
+                                            formControlName="nom" value={{tabUserbProProfile.nom}} 
+                                            [ngClass]="{'is-invalid' : updateForm.controls.nom.invalid && updateForm.controls.nom.dirty}"></span>
+
+                                            <span *ngIf="updateForm.controls.nom.invalid && updateForm.controls.nom.dirty" class="text-danger">
+                                                Veuillez saisir un nom valide
+                                                </span>
+                                    <!-- <div class="invalid-feedback" *ngIf="submitted && myForm.nom.errors?.required">
+                                    saisir votre nom.
+                                </div> -->
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Prénom </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="prenom"><input type="text" class="form-control"
+                                            formControlName="prenom" value={{tabUserbProProfile.prenom}}
+                                            [ngClass]="{'is-invalid' : updateForm.controls.prenom.invalid && updateForm.controls.prenom.dirty}"> </span>
+
+                                            <span *ngIf="updateForm.controls.prenom.invalid && updateForm.controls.prenom.dirty" class="text-danger">
+                                                Veuillez saisir un prénom valide
+                                                </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Courriel </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="courriel"><input type="text" class="form-control"
+                                            formControlName="courriel" disabled value={{tabUserbProProfile.courriel}}></span>
+                                           
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="" id="trusted-btn-sinscrire" value="Enregistrer"
+                                [disabled]="updateForm.invalid || !isAdresseValide" (click)="enregistrer()">
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <!-- Fin de la premiere section  -->
+
+                        <!-- Debut de la deuxieme section -->
+
+                        <div *ngIf="isUser" id="second_section">
+                            <div >
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> Catégorie globale </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="categorie_global"><input type="text"
+                                                class="form-control" formControlName="categorie_global"
+                                                value={{categorieGlobal}} 
+                                                [ngClass]="{'is-invalid' : updateForm.controls.categorie_global.invalid}"> </span>
+                                                <span *ngIf="updateForm.controls.categorie_global.invalid" class="text-danger">
+                                                    Catégorie globale non valide
+                                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> Profession </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="titre_profession"> <input type="text"
+                                                class="form-control" formControlName="titre_profession"
+                                                value={{titre_profession}}  
+                                                [ngClass]="{'is-invalid' : updateForm.controls.titre_profession.invalid}"></span>
+                                                <span *ngIf="updateForm.controls.titre_profession.invalid" class="text-danger">
+                                                   Profession non valide
+                                                   </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> N<sup>o</sup> de certificat </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="no_certificat"><input type="text"
+                                                class="form-control" formControlName="no_certificat"
+                                                value={{no_de_certificat}} [ngClass]="{'is-invalid':updateForm.controls.no_certificat.invalid}"> </span>
+                                                <span class="text-danger" *ngIf="updateForm.controls.no_certificat.invalid">
+                                                    No de Certificat non valide</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> N<sup>o</sup> BDNI </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="no_BDNI"><input type="text" class="form-control"
+                                                formControlName="no_BDNI" value={{no_BDNI}} 
+                                                [ngClass]="{'is-invalid':updateForm.controls.no_BDNI.invalid}"> </span>
+                                                <span class="text-danger" *ngIf="updateForm.controls.no_BDNI.invalid">
+                                                    No BDNI non valide</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> N<sup>o</sup> Numero AMF </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="no_BDNI"><input type="text" class="form-control"
+                                                formControlName="numero_AMF" value={{numero_AMF}}  
+                                                [ngClass]="{'is-invalid':updateForm.controls.numero_AMF.invalid}"> </span>
+                                                <span class="text-danger" *ngIf="updateForm.controls.numero_AMF.invalid">
+                                                    No de AMF non valide</span>
+    
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ligne_infos">
+                                    <div class="col-md-4">
+                                        <label> Téléphone </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="infos_profil" id="telephone"><input type="text"
+                                                class="form-control" formControlName="telephone"
+                                                value={{tabUserbProProfile.telephone}} 
+                                                [ngClass]="{'is-invalid':updateForm.controls.telephone.invalid}"> </span>
+                                                <span class="text-danger" *ngIf="updateForm.controls.telephone.invalid">
+                                                    No de telephone non valide</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> No civic </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="no_civic"><input type="text" class="form-control"
+                                            formControlName="no_civic" value={{tabUserbProProfile.no_civic}} (change)="onAdresse()"
+                                            [ngClass]="{'is-invalid':updateForm.controls.no_civic.invalid || !isAdresseValide}"></span>
+                                            <span class="text-danger" *ngIf="updateForm.controls.no_civic.invalid">
+                                                No Civic non valide</span>
+                                        </div>
+                               
+                           
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Nom de rue</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="rue"><input type="text" class="form-control"
+                                            formControlName="rue" value={{tabUserbProProfile.rue}} (change)="onAdresse()"
+                                            [ngClass]="{'is-invalid':updateForm.controls.rue.invalid || !isAdresseValide}"></span>
+                                            <span class="text-danger" *ngIf="updateForm.controls.rue.invalid">Rue non valide</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Ville</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="ville"><input type="text" class="form-control"
+                                            formControlName="ville" value={{tabUserbProProfile.ville}} (change)="onAdresse()"
+                                            [ngClass]="{'is-invalid':updateForm.controls.ville.invalid || !isAdresseValide}"></span>
+                                            <span class="text-danger" *ngIf="updateForm.controls.ville.invalid">Ville non valide</span>
+                                </div>
+                            </div>
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Province</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- <span class="infos_profil" id="province"><input type="text" class="form-control"
+                                            formControlName="province" value={{tabUserbProProfile.province}} (change)="onAdresse()"
+                                            [ngClass]="{'is-invalid':updateForm.controls.province.invalid || !isAdresseValide}"></span> -->
+                                            <select class="custom-select form-control" formControlName="province" 
+                                            (change)="onAdresse()" [ngClass]="{'is-invalid':!isAdresseValide}">
+                                                <option  value="">Choisir...</option>
+                                                <option *ngFor="let province of tabUserProvince" value="{{province}}">{{province}}</option>
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Code postal</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="code_postal"><input type="text" class="form-control"
+                                            formControlName="code_postal"
+                                            value={{tabUserbProProfile.code_postal}} (change)="onAdresse()"
+                                            [ngClass]="{'is-invalid':updateForm.controls.code_postal.invalid || !isAdresseValide}"></span>
+                                            <span class="text-danger" *ngIf="updateForm.controls.code_postal.invalid &&
+                                             updateForm.controls.code_postal.dirty">Code postal non valide</span><br/>
+                                            <span class="text-danger" *ngIf="!isAdresseValide">Veuillez saisir une adresse complète</span>
+                                            <!-- <span class=""> Form Validation formulaire {{updateForm.invalid}}</span> <br>
+                                            <span class=""> Form Validation adresse {{isAdresseValide}}</span> -->
+                                        </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="" id="trusted-btn-sinscrire" value="Enregistrer"
+                                  [disabled]="updateForm.invalid || !isAdresseValide"  (click)="enregistrer()">
+                            </div>
+                        </div>
+
+
+
+                        <!-- Fin de la deuxieme section -->
+
+
+                        <div *ngIf="isUser" id="third_section">
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Lien Facebook </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="url_Facebook">
+
+                                        <input type="text" class="form-control" formControlName="url_Facebook"
+                                            value={{tabUserbProProfile.url_Facebook}}
+                                            [ngClass]="{'is-invalid':updateForm.controls.url_Facebook.invalid}">
+                                    </span>
+                                    <span *ngIf="updateForm.controls.url_Facebook.invalid" class="text-danger">
+                                        Lien Facebook non valide, doit être en minuscule
+                                        </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Honoraires </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="honoraires">
+                                        <input type="text" class="form-control" formControlName="honoraires"
+                                            value={{honoraires}}   
+                                            [ngClass]="{'is-invalid':updateForm.controls.honoraires.invalid}">
+                                    </span>
+                                    <span *ngIf="updateForm.controls.honoraires.invalid && updateForm.controls.honoraires.dirty" class="text-danger">
+                                         honoraire invalide
+                                        </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Site web URL </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="honoraires">
+                                        <input type="text" class="form-control" formControlName="site_web_url"
+                                            value={{site_web_url}}
+                                            [ngClass]="{'is-invalid':updateForm.controls.site_web_url.invalid}"> </span>
+                                            <span *ngIf="updateForm.controls.site_web_url.invalid" class="text-danger">
+                                               Site web non valide
+                                                </span>
+                                </div>
+                            </div>
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Biographie </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="biographie_description"><input type="text"
+                                            class="form-control" formControlName="biographie_description"
+                                            value={{biographie_description}}
+                                            [ngClass]="{'is-invalid':updateForm.controls.biographie_description.invalid}"> </span>
+                                            <span *ngIf="updateForm.controls.biographie_description.invalid" class="text-danger">
+                                               Biographie non valide
+                                                </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Url LinkedIn </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="biographie_description"><input type="text"
+                                            class="form-control" formControlName="url_Linkedin" value={{url_Linkedin}}
+                                            [ngClass]="{'is-invalid':updateForm.controls.url_Linkedin.invalid}">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Régions d'exercice </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="regions">
+
+                                        <select class="custom-select form-control" formControlName="regions"
+                                        [ngClass]="{'is-invalid':updateForm.controls.regions.invalid}">
+                                            <option value="">Choisir...</option>
+                                            <option *ngFor="let region of tabUserProRegions" value="{{region}}">{{region}}</option>
+                                        </select>
+
+
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ligne_infos">
+                                <div class="col-md-4">
+                                    <label> Droit de pratique </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="infos_profil" id="droit_pratiques">
+
+                                        <select class="custom-select form-control" formControlName="droit_pratiques">
+                                            <option value="">Choisir...</option>
+                                            <option *ngFor="let droit_pratique of tabUserProCategories" value="{{droit_pratique}}">{{droit_pratique}}</option>
+                                        </select>
+
+
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <input type="submit" class="" id="trusted-btn-sinscrire" value="Enregistrer"
+                                [disabled]="updateForm.invalid || !isAdresseValide" (click)="enregistrer()">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

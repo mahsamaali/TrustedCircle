@@ -1,0 +1,90 @@
+
+<!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"> -->
+    
+    <nav class="navbar navbar-light navbar-expand-md border-bottom shadow-sm  bg-white ">
+        <!-- Si on veut     que se soit fixe nous devons ajouter la class fixed-top -->
+
+        <!-- fixed-top -->
+    
+        <!-- <div class="container-fluid"> -->
+           
+            <!--Partie gauche de menus-->
+            <a class="navbar-brand " routerLink="/home">
+                <img id="logo" src="../assets/images/TC logo 5.png" alt=""> 
+            </a>
+            <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarCollapse">
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> -->
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+
+                        
+            <!--Partie droite de menus-->
+            <!-- <div class="d-flex justify-content-end ml-0 mr-0"> -->
+
+                
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse" [ngbCollapse]="isCollapsed">
+                <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
+
+                        <ul class="nav navbar-nav  ml-auto   ">
+                            
+                            
+                            <li class="nav-item active ml-auto">
+                                <a *ngIf="isNotConnected" class="btn btn-outline-primary trusted-btn-sinscrire" routerLink="/sign-up">S'enregistrer</a>
+                            </li>
+                            <li class="nav-item active ml-auto">
+                                <a *ngIf="isNotConnected" class="btn btn-outline-primary trusted-btn-seconnecter" routerLink="/login">Se connecter</a>    
+                            </li>
+                            <li class="nav-item active ml-auto">
+                                
+                            </li>
+
+                            <li ngbDropdown class="d-inline ml-auto ">
+                            <!-- <li class="nav-item active ml-auto "> -->
+                                
+                                <button *ngIf="isConnected" class="btn btn-sm dropdown-toggle" id="dropdown" ngbDropdownToggle >
+                                    
+                                    <img *ngIf="isConnected" src="../assets/uploads/{{photo_utilisateur}}" alt="Avatar" class="avatar rounded-circle">
+                                    <h5> {{ nomHeader }} </h5>    
+                                </button>
+
+                                <div ngbDropdownMenu aria-labelledby="dropdown">
+
+                                    <a *ngIf="isConnected && isUser" ngbDropdownItem class=" btn btn-outline-primary trusted-btn-seconnecter" href="/profile/{{id}}/{{prenom}}/{{nom}}">Mon profil</a>
+                                    <a *ngIf="isConnected" ngbDropdownItem class=" btn btn-outline-primary trusted-btn-seconnecter" (click)="goToDashboard()">Tableau de bord</a>
+                                    <a *ngIf="isConnected" ngbDropdownItem class=" btn btn-outline-primary trusted-btn-seconnecter" href="/home" (click)="logout()">Se deconnecter</a>
+                                   
+                                  </div>
+                            </li>
+                            
+
+
+                            
+                            <!-- <li class="nav-item active ml-auto">
+                                
+                            </li>
+                            <li class="nav-item active ml-auto">
+                                
+                            </li> -->
+                            
+                        
+                        </ul>
+
+                </div>
+
+                
+            <!-- </div> -->
+
+        <!-- </div> -->
+
+    </nav>
+    
+<!-- </div> -->
+<br>
+
+<!-- <br>
+<br> -->
+
+
+<!-- <app-home></app-home> -->
+<router-outlet></router-outlet>

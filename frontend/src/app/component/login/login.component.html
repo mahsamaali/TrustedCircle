@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+
+    <div class="col-md-4 register-employee formulaireLoginRegister">
+
+        <img id="logo-loginregister" src="../../../assets/images/TC logo 5.png " alt="">
+
+        <!-- form card register -->
+        <div class="card-body">
+           <h2 id="messageErreur" *ngIf="messageErreur"> Vous avez une erreur</h2> 
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+                <h2 class="text-center">Se connecter</h2>
+
+
+                <div class="form-group">
+                    <label for="courriel">Adresse courriel</label>
+                    <input class="form-control" type="text" formControlName="courriel"
+                    [ngClass]="{'is-invalid': !connex || (userForm.controls.courriel.invalid 
+                    && userForm.controls.courriel.dirty)}">
+                    <!-- error -->
+                    <span *ngIf="userForm.controls.courriel.invalid && 
+                    userForm.controls.courriel.dirty" class="text-danger">
+                        Veuillez saisir un courriel valide
+                        </span>
+           
+                </div>
+
+
+                <div class="form-group">
+                    <label for="mot_de_passe">Mot de passe</label>
+                    <input class="form-control" formControlName="mot_de_passe" type="password"
+                    [ngClass]="{'is-invalid': !connex}">
+                    <!-- error -->
+              
+                    <span *ngIf="!connex" class="text-danger">
+                        Votre courriel ou mot de passe est invalide
+                        </span></div>
+                    
+    
+
+
+
+                <div class="form-group">
+                    <button href="/home" 
+                        class="btn btn-lg btn-block trusted-btn-sinscrire" [disabled]="userForm.invalid" type="submit">Se connecter</button>
+                </div>
+
+                <div class="form-group">
+                    <a href="" class="trusted-centrer-horiz" routerLink="/sign-up">S'enregistrer</a>
+                    <a href="" class="trusted-centrer-horiz" routerLink="">Mot de passe oublié</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- form card register -->
+</div>

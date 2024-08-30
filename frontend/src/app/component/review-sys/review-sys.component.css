@@ -1,0 +1,89 @@
+/* .reviews-container {
+    border: 1px solid lightgray;
+    width: 60%;
+    border-radius: 10px;
+}
+
+.circle-container {
+    width: 100%;
+    margin: 5% auto;
+    border: 1px solid gray;
+    padding: 2em;
+} */
+
+.messageErr {
+    margin-top: 10%;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+}
+
+
+.form-control, .btn-primary {
+    margin: 3%;
+}
+
+
+ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 1%;
+}
+
+.first-half {
+    height: 3.5em;
+    width: 1.75em;
+    border-top-left-radius: 1.75em;
+    border-bottom-left-radius: 1.75em;
+    background: lightgray;
+    border: 0.4em solid #0f1ef3;
+    box-sizing: border-box;
+    border-right: 0;
+    display: inline-block;
+}
+
+.second-half {
+    height: 3.5em;
+    width: 1.75em;
+    border-top-right-radius: 1.75em;
+    border-bottom-right-radius: 1.75em;
+    background: lightgray;
+    border: 0.4em solid #0f1ef3;
+    box-sizing: border-box;
+    border-left: 0;
+    display: inline-block;
+}
+
+
+.list-score {
+    font-size: 50px;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 2%;
+    vertical-align: top; 
+}
+
+.circle-review {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 1%;
+    border-radius: 50%;
+    background: lightgray;
+    border: 0.4em solid #0f1ef3;
+}
+
+#rateArea {
+    max-width: 95%;
+    max-height: 300px;
+}
+
+    /* Code pour le fonctionnement des erreures par abdel */
+
+    .text-danger {
+        position: absolute;
+    }
+    
+    .texte {
+        margin-bottom: 10%;
+    }
+    
+        /* Code pour le fonctionnement des erreures par abdel */

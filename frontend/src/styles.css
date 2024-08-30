@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+.trusted-btn-sinscrire{
+    background-color: #5756EF;
+    color: white;
+    border-radius: 25px;
+    font-weight: bolder;
+}
+
+.trusted-btn-sinscrire:hover{
+    background-color: transparent;
+    color: #5756EF;
+    border-radius: 25px;
+    font-weight: bolder;
+    border-color: #5756EF;
+    /* border-width: 3px; */
+    
+}
+.trusted-btn-seconnecter{
+    border: 0;
+    color: #5756EF;
+    font-weight: bolder;
+    border-radius: 25px;
+
+    vertical-align: middle;
+}
+.trusted-btn-seconnecter:hover{
+    background-color: black;
+    color: white;
+    
+    font-weight: bolder;
+}
+
+h5{
+    color: #5756EF;
+    font-weight: bolder;
+    line-height: 32px;
+    height: 32px;
+}
+
+
+
+#logo{
+    height: 4rem;
+}
+
+#trusted-h1-titrehome{
+    color: #1b1b21;
+    text-align: center;
+}
+
+#trusted-h1-titrehome-domaine{
+    color: #5756EF;
+}
+
+.trusted-centrer-horiz{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.formulaireLoginRegister{
+    border-width: 0px;
+    
+        
+    border-radius: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    background-color: #D0D0DA;
+    display: flex;
+    justify-content: center;
+}
+
+#logo-loginregister{
+    position: absolute;
+    width: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    top: -5%;   
+    
+    justify-content: center;
+}
+
+.form-control{
+    border-radius: 25px;
+    
+}

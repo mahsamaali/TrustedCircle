@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee formulaireLoginRegister">
+
+        <img id="logo-loginregister" src="../../../assets/images/TC logo 5.png" alt="">
+
+        <!-- form card register -->
+        <div class="card-body">
+
+            <h2 id="messageErreur" *ngIf="messageErreur"> Vous avez une erreur</h2>
+            <h2 id="messageErreurCourriel" *ngIf="messageErreurCourriel"> Vos adresses courriels ne sont pas pareilles
+            </h2>
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+                <h2 class="text-center">S'enregistrer</h2>
+
+                <div class="form-group">
+                    <label for="prenom">Votre Prénom</label>
+                    <input class="form-control" type="text" formControlName="prenom" 
+                    [ngClass]="{'is-invalid' : userForm.controls.prenom.invalid && userForm.controls.prenom.dirty}">
+                    <!-- error -->
+                        <span *ngIf="userForm.controls.prenom.invalid && userForm.controls.prenom.dirty" class="text-danger">
+                        Veuillez entrer au moins 2 charactères
+                        </span>
+        
+                </div>
+
+                <div class="form-group">
+                    <label for="nom">Votre Nom</label>
+                    <input class="form-control" type="text" formControlName="nom" 
+                    [ngClass]="{'is-invalid' : userForm.controls.nom.invalid && userForm.controls.nom.dirty}">
+                    <!-- error -->
+                    <span *ngIf="userForm.controls.nom.invalid && userForm.controls.nom.dirty" class="text-danger">
+                        Veuillez entrer au moins 2 charactères
+                        </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="courriel">Adresse courriel</label>
+                    <input class="form-control" type="text" formControlName="courriel" (keyup)="onVerifyEmail()"
+                    [ngClass]="{'is-invalid' : userForm.controls.courriel.invalid && userForm.controls.courriel.dirty}">
+                    <!-- error -->
+                        <span *ngIf="userForm.controls.courriel.invalid && userForm.controls.courriel.dirty" class="text-danger">
+                      Veuillez saisir un courriel valide
+                        </span>
+                
+                </div>
+                <div class="form-group">
+                    <label for="courriel2">Confirmation de votre adresse courriel</label>
+                    <input class="form-control" type="text" formControlName="courriel2" (keyup)="onVerifyEmail()">
+                    <span class="text-danger" *ngIf= "!newEmail">Ce courriel est non disponible</span>
+                    <!-- error -->
+                    <span id="email-msg" *ngIf="!isIdentique && userForm.controls.courriel.valid 
+                    && userForm.controls.courriel2.dirty" class="text-danger">
+                        Les courriels doivent êtres indentiques
+                    </span>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="mot_de_passe">Mot de passe</label>
+                    <input class="form-control" formControlName="mot_de_passe" type="password" 
+                     [ngClass]="{'is-invalid' : userForm.controls.mot_de_passe.invalid && userForm.controls.mot_de_passe.dirty}">
+                  <!-- error -->
+                  <span *ngIf="userForm.controls.mot_de_passe.invalid && userForm.controls.mot_de_passe.dirty" class="text-danger">
+                    Veuillez saisir un mot de passe entre 8 à 15 charactères
+                      </span>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="form-check" >
+                        <input class="form-check-input" type="radio" formControlName="role"  name="role" id="offre" value="offre" checked>
+                        <label class="form-check-label" for="offre">
+                          j'offre un service
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="role" formControlName="role" id="cherche" value="cherche" >
+                        <label class="form-check-label" for="cherche">
+                          je cherche un service
+                        </label>
+                      </div>
+
+                    
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block" 
+                    [ngClass]="{'btn-sinscrire-disabled':!userForm.valid,'trusted-btn-sinscrire':userForm.valid}"
+                     [disabled]="userForm.invalid" type="submit">S'enregistrer</button>
+                </div>
+
+                <div class="form-group">
+                    <a href="" class="trusted-centrer-horiz" routerLink="/login">Se connecter</a>
+                </div>
+
+             
+            </form>
+
+        </div>
+    </div>
+    <!-- form card register -->
+</div>
