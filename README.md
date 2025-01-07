@@ -30,11 +30,11 @@ Make sure you have the following installed:
    cd frontend
    ```
 2. Install dependencies:
-     ```bash
+   ```bash
    npm install
    ```
 3. Start the development server:
-        ```bash
+   ```bash
    npm start
    ```
 
