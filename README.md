@@ -37,17 +37,16 @@ Make sure you have the following installed:
    ```bash
    npm start
    ```
-
-  ### Backend
-   1. Navigate to the frontend directory:
+### Backend
+1. Navigate to the frontend directory:
    ```bash
    cd backend
    ```
 2. Install dependencies:
-     ```bash
+   ```bash
    npm install
    ```
 3. Start the development server:
-        ```bash
+   ```bash
    npm start
    ```
